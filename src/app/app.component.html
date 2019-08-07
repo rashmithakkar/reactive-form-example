@@ -1,20 +1,49 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://angular.io/tutorial">Tour of Heroes</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://github.com/angular/angular-cli/wiki">CLI Documentation</a></h2>
-  </li>
-  <li>
-    <h2><a target="_blank" rel="noopener" href="https://blog.angular.io/">Angular blog</a></h2>
-  </li>
-</ul>
+<div class="row justify-content-center">
+  <div class="col-10">
+    <div class="card">
+      <div class="card-header">
+        Registration Form
+      </div>
+      <div class="card-body">
+        <form [formGroup]="registrationForm">
+          <div class="form-group">
+            <div class="row">
+              <div class="col-lg-6 col-sm-12">
+                <label for="firstName">First Name</label>
+                <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="Enter First Name">
+                <small *ngIf="formControls.firstName.errors && formControls.firstName.errors['required']" class="form-text text-muted error-color">Please enter your first name.</small>
+              </div>
+              <div class="col-lg-6 col-sm-12">
+                <label for="lastName">Last Name</label>
+                <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Enter Last Name">
+                <small *ngIf="formControls.firstName.errors && formControls.firstName.errors['required']" class="form-text text-muted error-color">Please enter your last name.</small>
+              </div>
+            </div>
 
+            <div class="row">
+              <div class="col-lg-6 col-sm-12">
+                <label for="age">Age</label>
+                <input formControlName="age" type="text" class="form-control" id="age" placeholder="Enter Age">
+                <ng-container *ngIf="formControls.age.errors">
+                  <small *ngIf="formControls.age.errors['pattern'] || formControls.age.errors['required']" class="form-text text-muted error-color">Please enter your age</small>
+                </ng-container>
+              </div>
+              <div class="col-lg-6 col-sm-12">
+                <label for="email">Email</label>
+                <input formControlName="email" type="text" class="form-control" id="email" placeholder="Enter email Id">
+                <ng-container *ngIf="formControls.email.errors">
+                  <small *ngIf="formControls.email.errors['pattern'] || formControls.email.errors['required']" class="form-text text-muted error-color">Please enter your emailId.</small>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+
+        </form>
+      </div>
+      <div class="card-footer text-muted text-right">
+        <button type="button" class="btn btn-primary " (click)="save()" [disabled]="registrationForm.invalid">Submit</button>
+      </div>
+    </div>
+  </div>
+</div>
+<br>
